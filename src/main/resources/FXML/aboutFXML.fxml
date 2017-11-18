@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="210.0" style="-fx-background-color: #33b679;" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AboutController">
+    <children>
+        <Button fx:id="backButton" layoutX="156.0" layoutY="221.0" mnemonicParsing="false" onAction="#onClickActionBackButton" style="-fx-background-color: #269963;" text="Back" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Button>
+        <Pane prefHeight="47.0" prefWidth="210.0" style="-fx-background-color: #269963;">
+            <children>
+                <Label fx:id="welcomeLabel" layoutX="14.0" layoutY="9.0" text="RCSM" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Button fx:id="exitButton" alignment="CENTER" contentDisplay="CENTER" layoutX="177.0" layoutY="9.0" mnemonicParsing="false" onAction="#onClickActionExitButton" prefHeight="25.0" prefWidth="19.0" style="-fx-background-color: #788780;" text="x" textFill="WHITE">
+                    <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                    </cursor>
+                    <font>
+                        <Font name="System Bold" size="10.0" />
+                    </font>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" />
+                    </padding>
+                </Button>
+            </children>
+        </Pane>
+      <Label fx:id="aboutLabel" alignment="CENTER" layoutX="14.0" layoutY="73.0" prefHeight="124.0" prefWidth="182.0" text="App by Adrian Wieczorek" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+    </children>
+</Pane>
