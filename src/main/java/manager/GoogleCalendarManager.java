@@ -156,7 +156,7 @@ public class GoogleCalendarManager {
 
     private EventBean buildEvent(Map<String, String> matchMap) {
         String summary = "S: " + matchMap.get("gameType") + ", " + matchMap.get("homeTeamName") + " - " + matchMap.get("awayTeamName");
-        String description = getDescription(matchMap);
+        String description = fixDescription(getDescription(matchMap));
         String colorId = Colour.Sage;
         String location = fixGameAddress(matchMap.get("addressGame"));
 
@@ -210,5 +210,11 @@ public class GoogleCalendarManager {
         address = address.replace("Warzawa", "Warszawa");
 
         return address;
+    }
+
+    private String fixDescription(String description){
+        description = description.replace("&nbsp;", "").replace("\n", " ");
+
+        return description;
     }
 }
