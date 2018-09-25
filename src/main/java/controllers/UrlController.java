@@ -6,10 +6,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import manager.GoogleCalendarManager;
 import parser.RefereeCastWebParser;
-import sample.Main;
+import sample.RCSMApp;
 
 import java.io.IOException;
 import java.util.Map;
@@ -112,11 +111,11 @@ public class UrlController {
         String title = "Success!";
         String headerText = "Your event has been created!";
         String contentText = "If you don't have event in your calendar, you will write to administrator: theadrian219@gmail.com";
-        Main.showAlert(Alert.AlertType.INFORMATION, title, headerText, contentText);
+        RCSMApp.showAlert(Alert.AlertType.INFORMATION, title, headerText, contentText);
     }
 
     private void showUnsuccessToast(String headerText, String contentText) {
         String title = "Unsuccess!";
-        Main.showAlert(Alert.AlertType.WARNING, title, headerText, contentText);
+        RCSMApp.showAlert(Alert.AlertType.WARNING, title, headerText, contentText);
     }
 }

@@ -14,16 +14,14 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Adrian Wieczorek on 10/13/2017.
@@ -174,6 +172,8 @@ public class GoogleCalendarManager {
     private Map<String, String> getMatchDateTimes(String gameStartDateTime) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
         DateTime startDateTime = formatter.parseDateTime(gameStartDateTime);
+        startDateTime.withZone(DateTimeZone.forID("Europe/London"));
+        startDateTime.toCalendar(new Locale("pl", "PL"));
         startDateTime = startDateTime.minusHours(1);
 
         DateTime endDateTime = startDateTime.plusHours(3);

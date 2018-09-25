@@ -67,23 +67,21 @@ public class HomeController {
 
         final Stage loginStage = new Stage();
 
-        webView.getEngine().getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
-            public void changed(ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue) {
-                if (newValue != Worker.State.SUCCEEDED) {
-                    return;
-                }
+        webView.getEngine().getLoadWorker().stateProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != Worker.State.SUCCEEDED) {
+                return;
+            }
 
-                if (webView.getEngine().getTitle().contains("Success")) {
-                    manager.setAuthorizationCode(webView.getEngine().getTitle().substring(13));
+            if (webView.getEngine().getTitle().contains("Success")) {
+                manager.setAuthorizationCode(webView.getEngine().getTitle().substring(13));
 
-                    loginStage.close();
+                loginStage.close();
 
-                    try {
-                        authorization();
-                        setUrlStage();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                try {
+                    authorization();
+                    setUrlStage();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         });
