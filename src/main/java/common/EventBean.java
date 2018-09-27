@@ -1,8 +1,5 @@
 package common;
 
-import java.util.Calendar;
-import java.util.Locale;
-
 /**
  * Created by Adrian Wieczorek on 11/2/2017.
  */
@@ -14,20 +11,18 @@ public class EventBean {
     private String location;
     private String startDate;
     private String endDate;
-    private String startTime;
-    private String endTime;
 
-    public EventBean(String summary, String description, String colorId, String location, String startDate, String endDate, String startTime, String endTime) {
+    public EventBean(String summary, String description, String colorId, String location, String startDate, String endDate) {
         template = "{\n" +
                 "  \"summary\": \"<summary>\",\n" +
                 "  \"colorId\": \"<colorId>\",\n" +
                 "  \"description\": \"<description>\",\n" +
                 "  \"location\": \"<location>\",\n" +
                 "  \"start\": {\n" +
-                "    \"dateTime\": \"<startDate-YYYY-MM-dd>T<startTime-HH:mm:ss>.00+01:00\"\n" +
+                "    \"dateTime\": \"<startDate>\"\n" +
                 "  },\n" +
                 "  \"end\": {\n" +
-                "    \"dateTime\": \"<endDate-YYYY-MM-dd>T<endTime-HH:mm:ss>.00+01:00\"\n" +
+                "    \"dateTime\": \"<endDate>\"\n" +
                 "  }\n" +
                 "}";
 
@@ -37,17 +32,13 @@ public class EventBean {
         this.location = location;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.startTime = startTime;
-        this.endTime = endTime;
 
         template = template.replace("<summary>", summary);
         template = template.replace("<description>", description);
         template = template.replace("<colorId>", colorId);
         template = template.replace("<location>", location);
-        template = template.replace("<startDate-YYYY-MM-dd>", startDate);
-        template = template.replace("<endDate-YYYY-MM-dd>", endDate);
-        template = template.replace("<startTime-HH:mm:ss>", startTime);
-        template = template.replace("<endTime-HH:mm:ss>", endTime);
+        template = template.replace("<startDate>", startDate);
+        template = template.replace("<endDate>", endDate);
     }
 
     public String getSummary() {
@@ -118,30 +109,6 @@ public class EventBean {
         this.endDate = endDate;
 
         template = template.replace("<endDate-YYYY-MM-dd>", endDate);
-
-        return this;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public EventBean setStartTime(String startTime) {
-        this.startTime = startTime;
-
-        template = template.replace("<startTime-HH:mm:ss>", startTime);
-
-        return this;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public EventBean setEndTime(String endTime) {
-        this.endTime = endTime;
-
-        template = template.replace("<endTime-HH:mm:ss>", endTime);
 
         return this;
     }

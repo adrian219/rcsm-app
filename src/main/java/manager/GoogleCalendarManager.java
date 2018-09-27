@@ -160,35 +160,23 @@ public class GoogleCalendarManager {
 
         Map<String, String> matchDateTimesMap = getMatchDateTimes(matchMap.get("gameStartDate") + " " + matchMap.get("gameStartTime") + ":00");
         String startDate = matchDateTimesMap.get("startDate");
-        String startTime = matchDateTimesMap.get("startTime");
         String endDate = matchDateTimesMap.get("endDate");
-        String endTime = matchDateTimesMap.get("endTime");
 
-        EventBean event = new EventBean(summary, description, colorId, location, startDate, endDate, startTime, endTime);
-
-        return event;
+        return new EventBean(summary, description, colorId, location, startDate, endDate);
     }
 
     private Map<String, String> getMatchDateTimes(String gameStartDateTime) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
         DateTime startDateTime = formatter.parseDateTime(gameStartDateTime);
-        startDateTime.withZone(DateTimeZone.forID("Europe/London"));
+        startDateTime.withZone(DateTimeZone.forID("Europe/Warsaw"));
         startDateTime.toCalendar(new Locale("pl", "PL"));
         startDateTime = startDateTime.minusHours(1);
 
         DateTime endDateTime = startDateTime.plusHours(3);
 
-        String startDate = formatter.print(startDateTime).substring(0, 10);
-        String startTime = formatter.print(startDateTime).substring(11);
-
-        String endDate = formatter.print(endDateTime).substring(0, 10);
-        String endTime = formatter.print(endDateTime).substring(11);
-
         Map<String, String> matchDateTimesMap = new HashMap<String, String>();
-        matchDateTimesMap.put("startDate", startDate);
-        matchDateTimesMap.put("startTime", startTime);
-        matchDateTimesMap.put("endDate", endDate);
-        matchDateTimesMap.put("endTime", endTime);
+        matchDateTimesMap.put("startDate", startDateTime.toString());
+        matchDateTimesMap.put("endDate", endDateTime.toString());
 
         return matchDateTimesMap;
     }
